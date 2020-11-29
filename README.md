@@ -14,7 +14,7 @@ Use
 Add the plugin to your rebar config:
 
     {plugins, [
-        {etc_plug, {git, "https://github.com/vrnithinkumar/etc_plug.git", {tag, "0.1.0"}}}
+        {etc_plug, {git, "https://github.com/vrnithinkumar/etc_plug.git", {branch, "main"}}}
     ]}.
 
 Then just call your plugin directly in an existing application:
