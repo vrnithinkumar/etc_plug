@@ -31,7 +31,6 @@ init(State) ->
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
     io:format("Do state~n"),
-    % {ok, State}.
     CodePaths = rebar_state:code_paths(State, all_deps),
     ?PRINT(CodePaths),
     code:add_pathsa(rebar_state:code_paths(State, all_deps)),
@@ -42,10 +41,6 @@ do(State) ->
         true -> {ok, State}
     end.
 
-% -spec format_error(any()) ->  iolist().
-% format_error(Reason) ->
-%     io:format("Args: ~p~n", ["format error prv"]),
-%     io_lib:format("~p", [Reason]).
 
 -spec format_error(any()) -> string().
 format_error(_) ->
@@ -53,15 +48,20 @@ format_error(_) ->
 
 -spec gradualizer_check_app(rebar_app_info:t()) -> ok | nok.
 gradualizer_check_app(App) ->
-    GOpts = rebar_app_info:get(App, gradualizer_opts, []),
     Files = files_to_check(App),
-    ?PRINT(GOpts),
     ?PRINT(Files),
     ok.
 
 -spec files_to_check(rebar_app_info:t()) -> [file:name()].
 files_to_check(App) ->
+
     Opts = rebar_app_info:opts(App),
+    ?PRINT(Opts),
+    Deps = rebar_app_info:deps(App),
+    ?PRINT(Deps),
+    OutDir = rebar_app_info:out_dir(App),
+    ?PRINT(OutDir),
+
     GOpts = rebar_app_info:get(App, gradualizer_opts, []),
     Include = proplists:get_value(include, GOpts, undefined),
     Exclude = proplists:get_value(exclude, GOpts, []),
