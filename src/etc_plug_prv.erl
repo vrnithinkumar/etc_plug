@@ -10,6 +10,7 @@
 %% ===================================================================
 -spec init(rebar_state:t()) -> {ok, rebar_state:t()}.
 init(State) ->
+    io:format("Args: ~p~n", ["init prv"]),
     Provider = providers:create([
             {name, ?PROVIDER},            % The 'user friendly' name of the task
             {module, ?MODULE},            % The module implementation of the task
@@ -25,8 +26,10 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
+    io:format("Args: ~p~n", ["do prv"]),
     {ok, State}.
 
 -spec format_error(any()) ->  iolist().
 format_error(Reason) ->
+    io:format("Args: ~p~n", ["format error prv"]),
     io_lib:format("~p", [Reason]).
