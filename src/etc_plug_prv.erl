@@ -10,7 +10,7 @@
 %% ===================================================================
 -spec init(rebar_state:t()) -> {ok, rebar_state:t()}.
 init(State) ->
-    io:format("Args: ~p~n", ["init prv"]),
+    io:format("Init state: ~p~n", [State]),
     Provider = providers:create([
             {name, ?PROVIDER},            % The 'user friendly' name of the task
             {module, ?MODULE},            % The module implementation of the task
